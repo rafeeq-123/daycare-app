@@ -6,12 +6,7 @@ class ParentsController < ApplicationController
   end
 
   get '/parents/new' do
-    @parent = Parent.new
-    if @parent.valid?
-      redirect :'parent/show'
-    else
-      redirect :"parent/index"
-    end
+    erb :'parents/new'
   end
 
   get '/parents/:id' do
