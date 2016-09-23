@@ -6,11 +6,12 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
+    set :session_secret, 'the_house'
 
   end
 
-  get '/' do
-    erb :index
-  end
+  # get '/' do
+  #   erb :index
+  # end
 
 end
