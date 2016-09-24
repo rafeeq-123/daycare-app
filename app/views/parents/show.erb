@@ -1,1 +1,4 @@
-<h1>Welcome<%=parent.name%> to Teri's House</h1>
+<h1>Welcome!</h1>
+<%@parent.all do |parent|%>
+<%=parent.name%>
+<%end%>
