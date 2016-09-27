@@ -1,5 +1,4 @@
 class Parent < ActiveRecord::Base
-  has_many :kids
-  validates_presence_of :name
-
+  belongs_to :provider
+  validates_presence_of :name, :child_name, :schedule
 end

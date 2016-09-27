@@ -1,32 +1,32 @@
 class ParentsController < ApplicationController
 
-  get '/' do
+  get '/parents' do
     @parents = Parent.all
     erb :'parents/index'
-  end
-
-  post '/parents/:id' do
-    @parent = Parent.find(params[:id])
-      erb :'parents/show'
-      puts params.to_s
   end
 
   get '/parents/new' do
     erb :'parents/new'
   end
 
-  post '/parents' do
-    @parent = Parent.create(params[:name][:special_requests])
 
-   if @parent.valid?
-      @parent.save
-      flash[:success] = "You have successfully created an account"
-      redirect 'parents/show'
-  else
-      flash[:error] = "Something went wrong. Please try again!"
-      redirect '/parents/new'
+  post '/parents' do
+    @parent = Parent.create(params)
+    if  @parent.save
+        redirect '/parents/#{@parent.id}'
+    else
+        redirect '/parents/new'
     end
+    puts parents
   end
 
+  #   get '/parents/:id' do
+  #   @parent = Parent.find_by_id(params[:id])
+  #   if @parent
+  #      erb :'parents/show'
+  #   else
+  #      erb :'/parents'
+  #   end
 
+  # end
 end

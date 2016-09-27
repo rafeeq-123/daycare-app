@@ -1,4 +1,13 @@
 <h1>Welcome!</h1>
-<%@parent.all do |parent|%>
-<%=parent.name%>
-<%end%>
+<%@parent.each do |parent|%>
+  <%=parent.name%>
+  <%=parent.child_name%>
+  <%=parent.schedule%>
+  <p>Your request is pending...</p>
+  <%end%>
+
+<fieldset>
+<footer>
+  <p>&copy; 2016 Teri's House DayCare<p>
+</footer>
+</fieldset>

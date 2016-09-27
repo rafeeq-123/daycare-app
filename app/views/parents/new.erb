@@ -1,12 +1,16 @@
 <h1>Sign up!</h1>
-<form action="/parents/:id" method="post">
+<form action="/parents" method="POST">
   <fieldset>
   <legend>Parent Information</legend>
-     <p><label>Name:</label><input name="name" type="text"></p>
-     <p><label>Username:</label><input name="username"  type="text"></p>
-     <p><label>Password:</label><input type="password" name="pwd"></p>
-     <p><label>Child's Name:</label><input name="name_of_child" type="text"></p>
-     <p><label>Submit:</label><input name="submit" type="button"></p>
-
+     <p><label>Parent Name:</label><input name="name" type="text"></p>
+     <p><label>Child's Name:</label><input name="child_name"  type="text"></p>
+     <p><label>Schedule:</label><input name="schedule" type="text"></p>
+     <p><label>Submit:</label><input  type="submit" value="Create Request"></p>
   </fieldset>
+
+<fieldset>
+<footer>
+  <p>&copy; 2016 Teri's House DayCare<p>
+</footer>
+</fieldset>
 </form>

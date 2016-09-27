@@ -7,7 +7,7 @@ describe ParentsController do
       get '/'
 
       expect(last_response.status).to eq(200)
-      expect(last_response.body).to include("Welcome to Teri's House Daycare!")
+      expect(last_response.body).to include("Teri's House Daycare!")
     end
   end
 
@@ -15,6 +15,7 @@ describe ParentsController do
 
     it 'loads new page' do
       get 'parents/new'
+
 
       expect(last_response.status).to eq(200)
   end
@@ -25,9 +26,10 @@ describe ParentsController do
   end
 
   describe "Show page" do
-    it 'shows content submitted by form' do
+    it 'loads show' do
 
     expect(page.status_code).to eq(200)
+  end
 end
 
 

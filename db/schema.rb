@@ -12,20 +12,13 @@
 
 ActiveRecord::Schema.define(version: 20160922194116) do
 
-  create_table "kids", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "age"
-    t.integer  "parent_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "parents", force: :cascade do |t|
     t.string   "name"
-    t.text     "special_requests"
     t.integer  "provider_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "child_name"
+    t.string   "schedule"
   end
 
   create_table "providers", force: :cascade do |t|
