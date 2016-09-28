@@ -21,7 +21,6 @@ class ParentsController < ApplicationController
     erb :'parents/location'
   end
 
-
   get '/parents/:id' do
     @parent = Parent.find(params[:id])
     erb :"parents/show"
@@ -29,7 +28,6 @@ class ParentsController < ApplicationController
 
   post '/parents' do
     parent = Parent.create(params)
-   # binding.pry
     if parent.save
        redirect "/parents/#{parent.id}"
     else
@@ -45,16 +43,22 @@ class ParentsController < ApplicationController
 
   patch '/parents/:id' do
    # binding.pry
-    @parent = Parent.find(params[:id])
-    @parent = Parent.update(child_name: params[:child_name], schedule: params[:schedule])
+    parent = Parent.find(params[:id])
+    parent = Parent.update(child_name: params[:child_name], schedule: params[:schedule])
     redirect "/parents"
     # else
     #   redirect "/parents/#{@parent.id}"
     #   end
     end
 
-    delete ''
+  delete '/parents/:id/delete' do
+    parent = Parent.find(params[:id])
+    parent = Parent.update(child_name: params[:child_name], schedule: params[:schedule])
+    parent.destroy
+    redirect "/parents"
+  end
 
 
 end
+
 

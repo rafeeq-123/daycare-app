@@ -1,11 +1,11 @@
-<h1>Edit Submission</h1>
+<h1>Delete Submission</h1>
 
 <form action="/parents/<%= @parent.id%>" method="post">
 
-     <input id="hidden" type="hidden" name="_method" value="PATCH">
+     <input id="hidden" type="hidden" name="_method" value="DELETE">
      <label>Child Name:</label><input  name="child_name" value="<%= @parent.child_name%>">
      <label>Schedule:</label><input  name="schedule" value="<%= @parent.schedule%>">
-     <label>Edit:</label><input  type="submit" value="Edit Request">
+     <label>Delete:</label><input  type="submit" value="Delete Request">
 
 
 </form>
