@@ -1,1 +1,10 @@
 <h1>Edit Submission</h1>
+
+<form action="/parents/<@=parent.id%>" method="post">
+
+     <label>Child Name:</label><input  name="child_name" value="<% @parent.child_name%>">
+     <label>Schdule:</label><input  name="schdule" value="<% @parent.schdule%>">
+     <label>Submit:</label><input  type="submit" value="Edit Request">
+
+
+</form>

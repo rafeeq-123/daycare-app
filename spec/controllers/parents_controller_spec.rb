@@ -27,7 +27,7 @@ describe ParentsController do
 
   describe "Show page" do
     it 'loads show' do
-
+    expect(last_response.body).to include("Welcome")
     expect(page.status_code).to eq(200)
   end
 end
