@@ -21,9 +21,10 @@ class ParentsController < ApplicationController
     erb :'parents/location'
   end
 
-  get "/parents/:id/edit" do
+
+  get '/parents/:id' do
     @parent = Parent.find(params[:id])
-    erb :"parents/edit"
+    erb :"parents/show"
   end
 
   post '/parents' do
@@ -37,10 +38,22 @@ class ParentsController < ApplicationController
 
   end
 
-  get '/parents/:id' do
+  get '/parents/:id/edit' do
     @parent = Parent.find(params[:id])
-      erb :"parents/show"
+    erb :'parents/edit'
   end
+
+  patch '/parents/:id' do
+   # binding.pry
+    @parent = Parent.find(params[:id])
+    @parent = Parent.update(child_name: params[:child_name], schedule: params[:schedule])
+    redirect "/parents"
+    # else
+    #   redirect "/parents/#{@parent.id}"
+    #   end
+    end
+
+    delete ''
 
 
 end
