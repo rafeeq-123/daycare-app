@@ -1,10 +1,21 @@
 <h1>Welcome!</h1>
-<%@parent.each do |parent|%>
-  <%=parent.name%>
-  <%=parent.child_name%>
-  <%=parent.schedule%>
-  <p>Your request is pending...</p>
-  <%end%>
+
+<ul>
+<h3>Parent Name:</h3>
+ <li><%=@parent.name%></li>
+
+  <h3>Child Name:</h3>
+ <li><%=@parent.child_name%></li>
+
+  <h3>Desired Schedule:</h3>
+  <li><%=@parent.schedule%></li>
+
+  <h3>Status:</h3>
+ <li> Your request is pending...</li>
+ <h3>Edit Submission:</h3>
+<a href="/parents/edit">Edit</a>
+</ul>
+
 
 <fieldset>
 <footer>
