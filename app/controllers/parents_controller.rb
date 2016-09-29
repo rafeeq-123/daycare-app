@@ -3,12 +3,14 @@ class ParentsController < ApplicationController
    use Rack::Flash
 
   get '/parents' do
-    @parents = Parent.all
-    erb :'parents/index'
+      @parents = Parent.all
+      erb :'parents/index'
   end
 
   get '/parents/new' do
-    erb :'parents/new'
+    if logged_in?
+       erb :'parents/new'
+    end
   end
 
   get '/parents/about' do
@@ -25,11 +27,18 @@ class ParentsController < ApplicationController
 
   get '/parents/:id' do
     @parent = Parent.find(params[:id])
-    erb :"parents/show"
+    if @parent.user_id != current_user.id
+      flash[:error] = "have to be logged in"
+      redirect '/login_parents'
+    else
+       erb :"parents/show"
+    end
   end
 
   post '/parents' do
+    user = User.find(current_user.id)
     parent = Parent.create(params)
+    parent.user_id = user.id
     if parent.save
       flash[:success] = "Your request has been processed and is pending..."
       redirect "/parents/#{parent.id}"
@@ -46,20 +55,21 @@ class ParentsController < ApplicationController
   end
 
   patch '/parents/:id' do
-   # binding.pry
     parent = Parent.find(params[:id])
     parent = Parent.update(child_name: params[:child_name], schedule: params[:schedule])
     flash[:success] = "Your request has been updated, PUTO!!"
-    # redirect "/parents/:id/edit"
-    # else
-    #   redirect "/parents/#{@parent.id}"
-    #   end
     end
 
   delete '/parents/:id/delete' do
     parent = Parent.find(params[:id])
     parent.destroy
     flash[:success] = "Your request has been deleted, PUTO!!"
+  end
+
+  private
+
+  def login_error_message
+    flash[:error] = "Your request was not processed please be sure to fill out all of the form"
   end
 
 
