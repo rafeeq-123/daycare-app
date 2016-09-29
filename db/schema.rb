@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20160922194116) do
     t.datetime "updated_at",  null: false
     t.string   "child_name"
     t.string   "schedule"
+    t.integer  "user_id"
   end
 
   create_table "providers", force: :cascade do |t|
@@ -26,6 +27,7 @@ ActiveRecord::Schema.define(version: 20160922194116) do
     t.integer  "amount_of_kids_allowed"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "user_id"
   end
 
   create_table "users", force: :cascade do |t|

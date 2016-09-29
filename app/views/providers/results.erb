@@ -1,0 +1,6 @@
+<h1>Here are all the available schedules:</h1>
+<%Parent.all.each do |all|%>
+ <li><%=all.name%>:<a href="#"><%=all.schedule%></a> Requested At:<%=all.created_at%></li>
+  <%end%>
+
+

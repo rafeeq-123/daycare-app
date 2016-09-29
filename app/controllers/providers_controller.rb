@@ -1,10 +1,12 @@
 class ProvidersController < ApplicationController
 
   get '/providers' do
-    binding.pry
     @providers = Provider.all
-    "helllllo"
-    # erb :'providers/index'
+     erb :'providers/index'
+  end
+
+    get '/providers/results' do
+     erb :'providers/results'
   end
 
 end
