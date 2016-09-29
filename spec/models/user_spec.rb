@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'User' do
   before do
-    # @user = User.create(:email => "test123@aol.com", :password => "test", :username => "budspud")
+    @user = User.create(:email => "test123@aol.com", :password => "test", :username => "budspud")
   end
 
   it 'has a secure password' do
