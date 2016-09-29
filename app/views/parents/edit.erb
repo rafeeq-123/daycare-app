@@ -6,6 +6,10 @@
      <label>Child Name:</label><input  name="child_name" value="<%= @parent.child_name%>">
      <label>Schedule:</label><input  name="schedule" value="<%= @parent.schedule%>">
      <label>Edit:</label><input  type="submit" value="Edit Request">
+     <label>Request:</label>
+     <p><% if flash.has?(:success) %>
+  <%= flash[:success] %>
+<% end %> </p>
 
 
 </form>

@@ -1,4 +1,6 @@
+require 'rack-flash'
 class ParentsController < ApplicationController
+   use Rack::Flash
 
   get '/parents' do
     @parents = Parent.all
@@ -29,8 +31,10 @@ class ParentsController < ApplicationController
   post '/parents' do
     parent = Parent.create(params)
     if parent.save
-       redirect "/parents/#{parent.id}"
+      flash[:success] = "Your request has been processed and is pending..."
+      redirect "/parents/#{parent.id}"
     else
+      flash[:error] = "Your request was not processed please be sure to fill out all of the form"
       redirect '/parents/new'
     end
 
@@ -45,7 +49,8 @@ class ParentsController < ApplicationController
    # binding.pry
     parent = Parent.find(params[:id])
     parent = Parent.update(child_name: params[:child_name], schedule: params[:schedule])
-    redirect "/parents"
+    flash[:success] = "Your request has been updated, PUTO!!"
+    # redirect "/parents/:id/edit"
     # else
     #   redirect "/parents/#{@parent.id}"
     #   end

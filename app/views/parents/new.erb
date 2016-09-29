@@ -1,5 +1,8 @@
 <h1>Sign up!</h1>
 <form action="/parents"  method="post">
+<% if flash.has?(:error) %>
+  <%= flash[:error] %>
+<% end %>
   <fieldset>
   <legend>Parent Information</legend>
      <p><label>Parent Name:</label><input type="text" name="name" ></p>
