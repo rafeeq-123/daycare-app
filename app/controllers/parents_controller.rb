@@ -58,9 +58,8 @@ class ParentsController < ApplicationController
 
   delete '/parents/:id/delete' do
     parent = Parent.find(params[:id])
-    parent = Parent.update(child_name: params[:child_name], schedule: params[:schedule])
     parent.destroy
-    redirect "/parents"
+    flash[:success] = "Your request has been deleted, PUTO!!"
   end
 
 

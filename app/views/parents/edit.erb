@@ -7,9 +7,11 @@
      <label>Schedule:</label><input  name="schedule" value="<%= @parent.schedule%>">
      <label>Edit:</label><input  type="submit" value="Edit Request">
      <label>Request:</label>
-     <p><% if flash.has?(:success) %>
-  <%= flash[:success] %>
-<% end %> </p>
-
 
 </form>
+
+<fieldset>
+<footer>
+  <p>&copy; 2016 Teri's House DayCare<p>
+</footer>
+</fieldset>

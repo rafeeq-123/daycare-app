@@ -14,11 +14,14 @@
  <%if flash.has?(:success) %>
  <li> <%= flash[:success] %> </li>
 <% end %>
- <h3>Edit Submission:</h3>
-<a href="/parents/edit">Edit</a>
-</ul>
+<h3>Edit Submission</h3>
+<li><a href="<%=@parent.id%>/edit">Edit</a>  </li>
 
-
+<h3>Delete Submission</h3>
+<form action="/parents/<%= @parent.id%>/delete" method="post">
+<input id="hidden" type="hidden" name="_method" value="DELETE">
+<li><input type="submit" value="Delete"></li>
+</form>
 <fieldset>
 <footer>
   <p>&copy; 2016 Teri's House DayCare<p>
