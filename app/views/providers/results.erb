@@ -1,18 +1,17 @@
 <h1>Here are all the available schedules:</h1>
-<%Parent.all.each_with_index do |parent_info, index|%>
-<h3><%= index+1%>. Parent Name</h3>
+<%@parents.each do |parent_info|%>
+
+<h3>Parent Name:</h3>
+<%=parent_info.name%>
 <h3> Schedule Needed:</h3>
 <%=parent_info.schedule%>
+<h3>Child Name:</h3>
+<%=parent_info.child_name%>
+
 <%if flash.has?(:success) %>
  <li> <%= flash[:success] %> </li>
 <% end %>
 
-
-
-<a href="<%=parent_info.id%>">View</a>
-
-
-
-  <%end%>
+<%end%>
 
 

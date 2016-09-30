@@ -40,13 +40,12 @@ class ParentsController < ApplicationController
     parent = Parent.create(params)
     parent.user_id = user.id
     if parent.save
-      flash[:success] = "Your request has been processed and is pending..."
+      update_message
       redirect "/parents/#{parent.id}"
     else
       error_message
       redirect '/parents/new'
     end
-
   end
 
   get '/parents/:id/edit' do
@@ -57,12 +56,12 @@ class ParentsController < ApplicationController
   patch '/parents/:id' do
     parent_find_by_params
     parent = Parent.update(child_name: params[:child_name], schedule: params[:schedule])
-    update_message
+    erb :"parents/show"
   end
 
   delete '/parents/:id/delete' do
     parent_find_by_params
-    parent.destroy
+    @parent.destroy
     update_message
     redirect '/parents'
   end
@@ -81,9 +80,6 @@ private
     @parent = Parent.find(params[:id])
   end
 
-  # def current_user_id
-  #   current_user.id
-  # end
 end
 
 
