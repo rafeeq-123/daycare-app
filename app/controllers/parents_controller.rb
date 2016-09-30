@@ -28,7 +28,7 @@ class ParentsController < ApplicationController
   get '/parents/:id' do
     parent_params_find
     if @parent.user_id != current_user.id
-      flash[:error] = "have to be logged in"
+      error_message
       redirect '/login_parents'
     else
        erb :"parents/show"
@@ -43,7 +43,7 @@ class ParentsController < ApplicationController
       flash[:success] = "Your request has been processed and is pending..."
       redirect "/parents/#{parent.id}"
     else
-      flash[:error] = "Your request was not processed please be sure to fill out all of the form"
+      error_message
       redirect '/parents/new'
     end
 
@@ -63,7 +63,7 @@ class ParentsController < ApplicationController
   delete '/parents/:id/delete' do
     parent_params_find
     parent.destroy
-    flash[:success] = "***Your request has been deleted***"
+    update_message
     redirect '/parents'
   end
 
@@ -71,6 +71,10 @@ private
 
   def update_message
     flash[:success] = "Your request has been updated"
+  end
+
+  def error_message
+    flash[:error] = "error please try again"
   end
 
   def parent_params_find
