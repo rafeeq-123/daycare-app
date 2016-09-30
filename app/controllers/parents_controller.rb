@@ -3,8 +3,8 @@ class ParentsController < ApplicationController
    use Rack::Flash
 
   get '/parents' do
-      @parents = Parent.all
-      erb :'parents/index'
+    @parents = Parent.all
+    erb :'parents/index'
   end
 
   get '/parents/new' do
@@ -26,7 +26,7 @@ class ParentsController < ApplicationController
   end
 
   get '/parents/:id' do
-    @parent = Parent.find(params[:id])
+    parent_params_find
     if @parent.user_id != current_user.id
       flash[:error] = "have to be logged in"
       redirect '/login_parents'
@@ -50,30 +50,32 @@ class ParentsController < ApplicationController
   end
 
   get '/parents/:id/edit' do
-    @parent = Parent.find(params[:id])
-    flash[:success] = "Your request has been updated"
+    parent_params_find
+    update_message
   end
 
   patch '/parents/:id' do
-    parent = Parent.find(params[:id])
+    parent_params_find
     parent = Parent.update(child_name: params[:child_name], schedule: params[:schedule])
-    flash[:success] = "Your request has been updated"
+    update_message
   end
 
   delete '/parents/:id/delete' do
-    parent = Parent.find(params[:id])
+    parent_params_find
     parent.destroy
     flash[:success] = "***Your request has been deleted***"
     redirect '/parents'
-
-
   end
 
-  # private
+private
 
-  # def login_error_message
-  #   flash[:error] = "Your request was not processed please be sure to fill out all of the form"
-  # end
+  def update_message
+    flash[:success] = "Your request has been updated"
+  end
+
+  def parent_params_find
+    @parent = Parent.find(params[:id])
+  end
 
 
 end
