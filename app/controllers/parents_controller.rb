@@ -51,26 +51,29 @@ class ParentsController < ApplicationController
 
   get '/parents/:id/edit' do
     @parent = Parent.find(params[:id])
-    erb :'parents/edit'
+    flash[:success] = "Your request has been updated"
   end
 
   patch '/parents/:id' do
     parent = Parent.find(params[:id])
     parent = Parent.update(child_name: params[:child_name], schedule: params[:schedule])
-    flash[:success] = "Your request has been updated, PUTO!!"
-    end
+    flash[:success] = "Your request has been updated"
+  end
 
   delete '/parents/:id/delete' do
     parent = Parent.find(params[:id])
     parent.destroy
-    flash[:success] = "Your request has been deleted, PUTO!!"
+    flash[:success] = "***Your request has been deleted***"
+    redirect '/parents'
+
+
   end
 
-  private
+  # private
 
-  def login_error_message
-    flash[:error] = "Your request was not processed please be sure to fill out all of the form"
-  end
+  # def login_error_message
+  #   flash[:error] = "Your request was not processed please be sure to fill out all of the form"
+  # end
 
 
 end

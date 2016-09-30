@@ -8,9 +8,9 @@ class UsersController < ApplicationController
     user = User.create(params)
     session[:id] = user.id
     if user.save
-      redirect '/parents'
+       redirect '/parents'
     else
-      redirect '/login_parents'
+       redirect '/login_parents'
     end
   end
 end
