@@ -3,8 +3,8 @@ class ParentsController < ApplicationController
    use Rack::Flash
 
   get '/parents' do
-    @parents = Parent.all
-    erb :'parents/index'
+      @parents = Parent.all
+      erb :'parents/index'
   end
 
   get '/parents/new' do
@@ -26,7 +26,7 @@ class ParentsController < ApplicationController
   end
 
   get '/parents/:id' do
-    parent_params_find
+    parent_find_by_params
     if @parent.user_id != current_user.id
       error_message
       redirect '/login_parents'
@@ -50,18 +50,18 @@ class ParentsController < ApplicationController
   end
 
   get '/parents/:id/edit' do
-    parent_params_find
-    update_message
+    parent_find_by_params
+    erb :'parents/edit'
   end
 
   patch '/parents/:id' do
-    parent_params_find
+    parent_find_by_params
     parent = Parent.update(child_name: params[:child_name], schedule: params[:schedule])
     update_message
   end
 
   delete '/parents/:id/delete' do
-    parent_params_find
+    parent_find_by_params
     parent.destroy
     update_message
     redirect '/parents'
@@ -69,19 +69,21 @@ class ParentsController < ApplicationController
 
 private
 
+  def error_message
+    flash[:error] = "Please try again! Your submission was not successfull"
+  end
+
   def update_message
     flash[:success] = "Your request has been updated"
   end
 
-  def error_message
-    flash[:error] = "error please try again"
-  end
-
-  def parent_params_find
+  def parent_find_by_params
     @parent = Parent.find(params[:id])
   end
 
 
 end
+
+
 
 
