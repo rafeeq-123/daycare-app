@@ -81,7 +81,9 @@ private
     @parent = Parent.find(params[:id])
   end
 
-
+  # def current_user_id
+  #   current_user.id
+  # end
 end
 
 
