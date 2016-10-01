@@ -29,7 +29,7 @@ class ParentsController < ApplicationController
     parent_find_by_params
     if @parent.user_id != current_user.id
        error_message
-      redirect '/login_parents'
+       redirect '/login_parents'
     else
        erb :"parents/show"
     end

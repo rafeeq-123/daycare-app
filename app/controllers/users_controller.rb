@@ -13,7 +13,7 @@ class UsersController < ApplicationController
        flash[:success] = "YOU ARE NOW LOGGED IN"
        redirect '/parents'
     else
-       flash[:success] = "Something went wrong with login"
+       flash[:error] = "Something went wrong with login"
        redirect '/login_parents'
     end
   end

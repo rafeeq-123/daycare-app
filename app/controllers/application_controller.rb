@@ -7,7 +7,6 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     set :session_secret, 'thehouse'
-
   end
 
   get '/' do
@@ -15,14 +14,12 @@ class ApplicationController < Sinatra::Base
   end
 
   helpers do
+    def current_user
+      User.find(session[:id])
+    end
 
-  def current_user
-    User.find(session[:id])
+    def logged_in?
+      !!current_user
+    end
   end
-
-  def logged_in?
-    !!current_user
-  end
-end
-
 end
