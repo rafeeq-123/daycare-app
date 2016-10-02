@@ -1,3 +1,3 @@
-Welcome to the fun app.
+Welcome to the Daycare app.
 
-The fun apps allows parents to put adds up so that daycare providers can see the schedules.
+The Daycare apps allows parents to put adds up so that daycare providers can see the schedules

@@ -27,7 +27,7 @@ class ParentsController < ApplicationController
 
   get '/parents/:id' do
     parent_find_by_params
-    if @parent.user_id != current_user.id
+    if @parent.user_id != current_user_and_id
        error_message
        redirect '/login_parents'
     else
@@ -36,7 +36,7 @@ class ParentsController < ApplicationController
   end
 
   post '/parents' do
-    user = User.find(current_user.id)
+    user = User.find(current_user_and_id)
     parent = Parent.create(params)
     parent.user_id = user.id
     if parent.save
@@ -78,6 +78,10 @@ private
 
   def parent_find_by_params
     @parent = Parent.find(params[:id])
+  end
+
+  def current_user_and_id
+    current_user.id
   end
 
 end
