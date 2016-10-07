@@ -8,10 +8,10 @@ class ApplicationController < Sinatra::Base
     enable :sessions
     set :session_secret, 'thehouse'
   end
-
   get '/' do
     erb :index
   end
+
 
   helpers do
     def current_user

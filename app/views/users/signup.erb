@@ -1,7 +1,12 @@
-<h1> Login Parents!</h1>
+<h1> Sign Up Parents!</h1>
+<% if flash.has?(:error) %>
+  <%= flash[:error] %>
+<% end %>
 <fieldset>
-<form  action="/users/login_parents" method="post" >
+<form  action="/users/signup" method="post" >
   <ul>
+    <li><label for="email">Email</label>
+    <input type="email" name="email" placeholder="yourname@email.com" required></li>
     <li><label for="username">Username</label>
     <input type="username" name="username" placeholder="username" required></li>
     <li><label for="password">Password</label>

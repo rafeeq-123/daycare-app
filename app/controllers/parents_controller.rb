@@ -1,10 +1,13 @@
 require 'rack-flash'
 class ParentsController < ApplicationController
+  enable :sessions
    use Rack::Flash
-
+#go to the route
   get '/parents' do
+    if logged_in?
       @parents = Parent.all
       erb :'parents/index'
+    end
   end
 
   get '/parents/new' do
@@ -49,8 +52,10 @@ class ParentsController < ApplicationController
   end
 
   get '/parents/:id/edit' do
-    parent_find_by_params
-    erb :'parents/edit'
+    if logged_in?
+      parent_find_by_params
+      erb :'parents/edit'
+    end
   end
 
   patch '/parents/:id' do
@@ -60,10 +65,12 @@ class ParentsController < ApplicationController
   end
 
   delete '/parents/:id/delete' do
-    parent_find_by_params
-    @parent.destroy
-    update_message
-    redirect '/parents'
+    if logged_in?
+      parent_find_by_params
+      @parent.destroy
+      update_message
+      redirect '/parents'
+    end
   end
 
 private
@@ -85,7 +92,3 @@ private
   end
 
 end
-
-
-
-
